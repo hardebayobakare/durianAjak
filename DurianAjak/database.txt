@@ -1,0 +1,40 @@
+user: durianaj_dadmin pass: r[?O=,iSM*G.
+
+CREATE TABLE Customer (
+  Customer_ID BIGINT PRIMARY KEY NOT NULL,
+  Customer_Fname VARCHAR(20) NOT NULL,
+  Customer_Lname VARCHAR(20) NOT NULL,
+  Customer_Username VARCHAR(13) NOT NULL,
+  Customer_Password VARCHAR(50) NOT NULL,
+  Customer_Email VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Seller (
+  Seller_ID BIGINT PRIMARY KEY NOT NULL,
+  Seller_Email VARCHAR(50) NOT NULL,
+  Seller_Password VARCHAR(50) NOT NULL,
+  Seller_Contact INT NOT NULL
+);
+
+CREATE TABLE Driver (
+  Driver_ID BIGINT PRIMARY KEY NOT NULL,
+  Driver_Name VARCHAR(50) NOT NULL,
+  Driver_Email VARCHAR(50) NOT NULL,
+  Driver_Password VARCHAR(50) NOT NULL,
+  Driver_Contact INT NOT NULL
+);
+
+CREATE TABLE OrderingAndServices (
+  Order_ID BIGINT PRIMARY KEY NOT NULL,
+  Delivery_Address VARCHAR(100) NOT NULL,
+  Durian_Quantity INT NOT NULL,
+  Delivery_Price Decimal(10,2)NOT NULL,
+  Delivery_Date DATE NOT NULL,
+  Delivery_Status VARCHAR(10),
+  Customer_ID BIGINT NOT NULL,
+  Driver_ID BIGINT NOT NULL,
+  Seller_ID BIGINT NOT NULL,
+  FOREIGN KEY(Customer_ID) REFERENCES Customer(Customer_ID) ON UPDATE CASCADE ON DELETE RESTRICT,
+  FOREIGN KEY(Driver_ID) REFERENCES Driver(Driver_ID) ON UPDATE CASCADE ON DELETE RESTRICT,
+  FOREIGN KEY(Seller_ID) REFERENCES Seller(Seller_ID) ON UPDATE CASCADE ON DELETE RESTRICT
+);
